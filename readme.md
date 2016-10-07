@@ -1,0 +1,4 @@
+- Baixar os arquivos hospedados do GitHub
+- Executar o SQL contido no arquivo gerenciador_tarefas.sql
+- Dentro da pasta service, existe um .htaccess já configurado para as devidas rotas, não deve ser necessárias alterações
+- Executar o arquivo index.html

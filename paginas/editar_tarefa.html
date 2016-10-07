@@ -1,0 +1,90 @@
+﻿<style type="text/css">
+	.form-horizontal input.ng-invalid.ng-dirty {
+		border-color: #FA787E;
+  	}
+
+  	.form-horizontal input.ng-valid.ng-dirty {
+    	border-color: #78FA89;
+  	}
+</style>
+
+<div class="view">
+    <div class="container">
+        <div class="row">
+        	<nav class= "navbar navbar-default" role= "navigation" >
+        		<div class= "navbar-header" >
+        			<a class= "navbar-brand" href= "#/tarefas"><i class="glyphicon glyphicon-th-large"></i> Listar tarefas </a>
+        			<a ng-show="tarefa.tarefa_id" class= "navbar-brand" href= "#/editar-tarefa/0"><i class="glyphicon glyphicon-plus"></i> Adicionar tarefa </a>
+        		</div>
+        	</nav>
+        	
+        	<header>
+            	<h3>{{title}}</h3>
+        	</header>
+        	
+        	<div class="col-md-12">
+				<form role="form" name="myForm" class="form-horizontal">
+					<div class="row">
+						<div class= "form-group" ng-class="{error: myForm.tarefa_titulo.$invalid}">
+    						<label class= "col-md-2">Título</label>
+    						<div class="col-md-4">
+    							<input type="text" name="tarefa_titulo" ng-model="tarefa.tarefa_titulo" class="form-control" maxlength="30" placeholder="Título da Tarefa" required/>
+    							<span ng-show="myForm.tarefa_titulo.$dirty && myForm.tarefa_titulo.$invalid" class="help-inline">Título obrigatório</span>
+    						</div>
+						</div>
+						
+						<div class= "form-group" ng-class="{error: myForm.tarefa_titulo.$invalid}">
+    						<label class= "col-md-2">Concluída</label>
+    						<div class="col-md-4">
+    							<label class="radio-inline">
+									<input type="radio" ng-model="tarefa.tarefa_status" ng-value="0" required>Não
+								</label>
+								<label class="radio-inline">
+									<input type="radio" ng-model="tarefa.tarefa_status" ng-value="1" required>Sim
+								</label>
+    							<span ng-show="myForm.tarefa_status.$dirty && myForm.tarefa_status.$invalid" class="help-inline">Status obrigatório</span>
+    						</div>
+						</div>
+
+						<div class= "form-group">
+    						<label class= "col-md-2">Descrição</label>
+    						<div class="col-md-4">
+    							<textarea name="tarefa_descricao" ng-model="tarefa.tarefa_descricao" class="form-control" rows="5" placeholder="Descrição da Tarefa"></textarea>
+    						</div>
+						</div>
+
+						<div ng-show="tarefa.tarefa_id" class= "form-group">
+    						<label class= "col-md-2">Data de criação</label>
+    						<div class="col-md-4">
+    							<input type="text" readonly name="tarefa_data_criacao" ng-model="tarefa.tarefa_data_criacao" class="form-control" />
+    						</div>
+						</div>
+
+						<div ng-show="tarefa.tarefa_id" class= "form-group">
+    						<label class= "col-md-2">Data última alteração</label>
+    						<div class="col-md-4">
+    							<input type="text" readonly name="tarefa_data_edicao" ng-model="tarefa.tarefa_data_edicao" class="form-control" />
+    						</div>
+						</div>
+
+						<div ng-show="tarefa.tarefa_status == 1" class= "form-group">
+    						<label class= "col-md-2">Data conclusão</label>
+    						<div class="col-md-4">
+    							<input type="text" readonly name="tarefa_data_conclusao" ng-model="tarefa.tarefa_data_conclusao" class="form-control" />
+    						</div>
+						</div>
+
+						<div class= "form-group">
+    						<label class= "col-md-2"></label>
+    						<div class="col-md-4">
+    							<a href="#/" class="btn">Cancelar</a>
+        						<button ng-click="salvarTarefa(tarefa);" ng-disabled="isClean() || myForm.$invalid" class="btn btn-success">{{buttonText}}</button>
+        						<button ng-click="apagarTarefa(tarefa)" ng-show="tarefa.tarefa_id" class="btn btn-danger">&nbsp;<i class="glyphicon glyphicon-remove"></i>Apagar</button>
+    						</div>
+						</div>
+					</div>
+				</form>
+        	</div>
+		</div>
+	</div>
+</div>
